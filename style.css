@@ -207,6 +207,7 @@ main { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
 .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .project-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
 .small-note { font-size: 0.8rem; margin-top: 10px; }
+.section-lead { margin: -14px 0 22px; max-width: 640px; }
 
 .arch { display: flex; align-items: center; gap: 0; margin: 24px 0 8px; flex-wrap: wrap; row-gap: 10px; }
 .node {

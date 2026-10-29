@@ -27,7 +27,8 @@
       <a href="#about">About</a>
       <a href="#skills">Stack</a>
       <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
+      <a href="#projects">Work</a>
+      <a href="#personal">Personal</a>
       <a href="#contact">Contact</a>
     </nav>
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
@@ -185,7 +186,8 @@
 
     <!-- PROJECTS -->
     <section id="projects" class="section">
-      <h2 class="eyebrow">04 · Projects</h2>
+      <h2 class="eyebrow">04 · Work Projects</h2>
+      <p class="muted section-lead">Production healthcare platforms I build at Gadgeon Smart Systems.</p>
 
       <article class="project feature reveal">
         <div class="project-head">
@@ -216,39 +218,6 @@
           <li>FastAPI endpoints for the dashboard, downloads and notification screens.</li>
         </ul>
         <div class="chips"><i>FastAPI</i><i>Chatwoot</i><i>RAG</i><i>Firebase</i><i>Redis</i><i>PostgreSQL</i><i>GCP</i></div>
-      </article>
-
-      <article class="project feature reveal">
-        <div class="project-head">
-          <span class="tag new">Live demo</span>
-          <h3>DocChat</h3>
-          <p class="muted">RAG document assistant · Personal project</p>
-        </div>
-        <p>
-          Upload PDFs, notes or article URLs and chat with them. Answers come only from your documents and
-          cite the exact source and page inline, streamed token by token.
-        </p>
-        <div class="arch" aria-label="Architecture diagram">
-          <div class="node">PDF / URL / Text</div>
-          <div class="arrow"></div>
-          <div class="node">Chunk + Embed<small>MiniLM · ONNX · local</small></div>
-          <div class="arrow"></div>
-          <div class="node hl">Chroma<small>vector search</small></div>
-          <div class="arrow"></div>
-          <div class="node">Gemini<small>grounded · SSE</small></div>
-        </div>
-        <ul class="bullets">
-          <li>End-to-end <b>RAG pipeline</b>: loading, chunking, local embeddings, vector search, grounded prompting with <b>[1], [2] citations</b>.</li>
-          <li><b>Streaming answers</b> over server-sent events from a FastAPI backend.</li>
-          <li>Safe for public use without accounts: <b>per-session isolation</b>, 24h auto-expiry, upload caps, rate limiting and SSRF protection.</li>
-          <li>Runs at <b>zero cost</b>: swapped PyTorch for ONNX and tuned batching to cut peak memory from ~2 GB to ~360 MB on a 512 MB free host.</li>
-        </ul>
-        <div class="chips"><i>FastAPI</i><i>LangChain</i><i>Chroma</i><i>RAG</i><i>Gemini</i><i>Docker</i><i>Render</i></div>
-        <div class="project-links">
-          <a class="btn primary" href="https://docchat-ft5u.onrender.com" target="_blank" rel="noopener">Live demo</a>
-          <a class="btn" href="https://github.com/muhammedroshanmk048/rag-document-assistant" target="_blank" rel="noopener">Code</a>
-        </div>
-        <p class="muted small-note">Free hosting sleeps when idle, so the first load can take about a minute.</p>
       </article>
 
       <div class="project-grid">
@@ -283,6 +252,80 @@
         </article>
       </div>
 
+    </section>
+
+    <!-- PERSONAL PROJECTS -->
+    <section id="personal" class="section">
+      <h2 class="eyebrow">05 · Personal Projects</h2>
+      <p class="muted section-lead">AI apps I designed, built and deployed on my own — live, open source, and running at zero cost.</p>
+
+      <article class="project feature reveal">
+        <div class="project-head">
+          <span class="tag new">Live demo</span>
+          <h3>MeetScribe</h3>
+          <p class="muted">AI meeting transcription assistant</p>
+        </div>
+        <p>
+          Upload a meeting recording and get a timestamped transcript, a summary, key decisions and
+          action items with owners and due dates — exportable as Markdown, text or SRT subtitles.
+        </p>
+        <div class="arch" aria-label="Architecture diagram">
+          <div class="node">Recording<small>mp3 · m4a · wav · mp4</small></div>
+          <div class="arrow"></div>
+          <div class="node">ffmpeg<small>16 kHz mono · chunking</small></div>
+          <div class="arrow"></div>
+          <div class="node hl">Whisper large-v3<small>speech-to-text</small></div>
+          <div class="arrow"></div>
+          <div class="node">Gemini<small>structured JSON</small></div>
+        </div>
+        <ul class="bullets">
+          <li><b>Audio processing pipeline</b> with ffmpeg: normalizes any format to 16 kHz mono and splits long recordings into overlapping chunks, merged back with corrected timestamps.</li>
+          <li><b>Speech recognition</b> with Whisper large-v3 — a 68-second meeting transcribes in about 4 seconds.</li>
+          <li><b>LLM summarization</b> into Pydantic-validated JSON (summary, decisions, action items, open questions), with map-reduce for long transcripts.</li>
+          <li>Runs as a <b>background job pipeline</b> (convert → transcribe → summarize) with live progress, so no request is held open for minutes.</li>
+          <li>Swappable transcription engine and model fallback, with per-session isolation, upload limits and recordings never stored.</li>
+        </ul>
+        <div class="chips"><i>FastAPI</i><i>Whisper</i><i>ffmpeg</i><i>Groq</i><i>Gemini</i><i>Pydantic</i><i>Docker</i><i>Render</i></div>
+        <div class="project-links">
+          <a class="btn primary" href="https://meetscribe-5j70.onrender.com" target="_blank" rel="noopener">Live demo</a>
+          <a class="btn" href="https://github.com/muhammedroshanmk048/meeting-transcription-assistant" target="_blank" rel="noopener">Code</a>
+        </div>
+        <p class="muted small-note">Free hosting sleeps when idle, so the first load can take about a minute.</p>
+      </article>
+
+      <article class="project feature reveal">
+        <div class="project-head">
+          <span class="tag new">Live demo</span>
+          <h3>DocChat</h3>
+          <p class="muted">RAG document assistant</p>
+        </div>
+        <p>
+          Upload PDFs, notes or article URLs and chat with them. Answers come only from your documents and
+          cite the exact source and page inline, streamed token by token.
+        </p>
+        <div class="arch" aria-label="Architecture diagram">
+          <div class="node">PDF / URL / Text</div>
+          <div class="arrow"></div>
+          <div class="node">Chunk + Embed<small>MiniLM · ONNX · local</small></div>
+          <div class="arrow"></div>
+          <div class="node hl">Chroma<small>vector search</small></div>
+          <div class="arrow"></div>
+          <div class="node">Gemini<small>grounded · SSE</small></div>
+        </div>
+        <ul class="bullets">
+          <li>End-to-end <b>RAG pipeline</b>: loading, chunking, local embeddings, vector search, grounded prompting with <b>[1], [2] citations</b>.</li>
+          <li><b>Streaming answers</b> over server-sent events from a FastAPI backend.</li>
+          <li>Safe for public use without accounts: <b>per-session isolation</b>, 24h auto-expiry, upload caps, rate limiting and SSRF protection.</li>
+          <li>Runs at <b>zero cost</b>: swapped PyTorch for ONNX and tuned batching to cut peak memory from ~2 GB to ~360 MB on a 512 MB free host.</li>
+        </ul>
+        <div class="chips"><i>FastAPI</i><i>LangChain</i><i>Chroma</i><i>RAG</i><i>Gemini</i><i>Docker</i><i>Render</i></div>
+        <div class="project-links">
+          <a class="btn primary" href="https://docchat-ft5u.onrender.com" target="_blank" rel="noopener">Live demo</a>
+          <a class="btn" href="https://github.com/muhammedroshanmk048/rag-document-assistant" target="_blank" rel="noopener">Code</a>
+        </div>
+        <p class="muted small-note">Free hosting sleeps when idle, so the first load can take about a minute.</p>
+      </article>
+
       <a class="gh-link reveal" href="https://github.com/muhammedroshanmk048" target="_blank" rel="noopener">
         More on GitHub → github.com/muhammedroshanmk048
       </a>
@@ -290,7 +333,7 @@
 
     <!-- CONTACT -->
     <section id="contact" class="section contact reveal">
-      <h2 class="eyebrow">05 · Contact</h2>
+      <h2 class="eyebrow">06 · Contact</h2>
       <h3 class="big">Let's build something <span class="grad">reliable</span>.</h3>
       <p class="muted">Open to backend engineering roles and interesting collaborations.</p>
       <div class="cta center">
