@@ -218,6 +218,39 @@
         <div class="chips"><i>FastAPI</i><i>Chatwoot</i><i>RAG</i><i>Firebase</i><i>Redis</i><i>PostgreSQL</i><i>GCP</i></div>
       </article>
 
+      <article class="project feature reveal">
+        <div class="project-head">
+          <span class="tag new">Live demo</span>
+          <h3>DocChat</h3>
+          <p class="muted">RAG document assistant · Personal project</p>
+        </div>
+        <p>
+          Upload PDFs, notes or article URLs and chat with them. Answers come only from your documents and
+          cite the exact source and page inline, streamed token by token.
+        </p>
+        <div class="arch" aria-label="Architecture diagram">
+          <div class="node">PDF / URL / Text</div>
+          <div class="arrow"></div>
+          <div class="node">Chunk + Embed<small>MiniLM · ONNX · local</small></div>
+          <div class="arrow"></div>
+          <div class="node hl">Chroma<small>vector search</small></div>
+          <div class="arrow"></div>
+          <div class="node">Gemini<small>grounded · SSE</small></div>
+        </div>
+        <ul class="bullets">
+          <li>End-to-end <b>RAG pipeline</b>: loading, chunking, local embeddings, vector search, grounded prompting with <b>[1], [2] citations</b>.</li>
+          <li><b>Streaming answers</b> over server-sent events from a FastAPI backend.</li>
+          <li>Safe for public use without accounts: <b>per-session isolation</b>, 24h auto-expiry, upload caps, rate limiting and SSRF protection.</li>
+          <li>Runs at <b>zero cost</b>: swapped PyTorch for ONNX and tuned batching to cut peak memory from ~2 GB to ~360 MB on a 512 MB free host.</li>
+        </ul>
+        <div class="chips"><i>FastAPI</i><i>LangChain</i><i>Chroma</i><i>RAG</i><i>Gemini</i><i>Docker</i><i>Render</i></div>
+        <div class="project-links">
+          <a class="btn primary" href="https://docchat-ft5u.onrender.com" target="_blank" rel="noopener">Live demo</a>
+          <a class="btn" href="https://github.com/muhammedroshanmk048/rag-document-assistant" target="_blank" rel="noopener">Code</a>
+        </div>
+        <p class="muted small-note">Free hosting sleeps when idle, so the first load can take about a minute.</p>
+      </article>
+
       <div class="project-grid">
         <article class="project reveal">
           <div class="project-head">
