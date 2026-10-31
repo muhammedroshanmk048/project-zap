@@ -262,6 +262,40 @@
       <article class="project feature reveal">
         <div class="project-head">
           <span class="tag new">Live demo</span>
+          <h3>VisionTrack</h3>
+          <p class="muted">Real-time object detection &amp; tracking</p>
+        </div>
+        <p>
+          Detect and track 80 kinds of everyday objects in images, short videos and live on your webcam.
+          One YOLO model runs in three places: PyTorch locally, ONNX Runtime on the server, and WebGPU in the browser.
+        </p>
+        <div class="arch" aria-label="Architecture diagram">
+          <div class="node">YOLO26n<small>PyTorch · Ultralytics</small></div>
+          <div class="arrow"></div>
+          <div class="node hl">ONNX export<small>NMS-free · 640 / 320 px</small></div>
+          <div class="arrow"></div>
+          <div class="node">FastAPI server<small>ONNX Runtime · NumPy</small></div>
+          <div class="arrow"></div>
+          <div class="node">Browser<small>WebGPU · ~20 FPS</small></div>
+        </div>
+        <ul class="bullets">
+          <li><b>Object detection</b> with YOLO26n exported to ONNX. Pre/post-processing written in NumPy matches Ultralytics exactly, so the server runs without PyTorch: ~306 MB peak RAM on a 512 MB free instance.</li>
+          <li><b>Multi-object tracking:</b> ByteTrack locally, plus a SORT-style tracker I wrote in NumPy (motion prediction + IoU matching) that counts unique objects per class.</li>
+          <li><b>Video processing</b> as a background job: ffmpeg samples frames, each one is detected, tracked and annotated, and the result is encoded to browser-playable H.264.</li>
+          <li><b>Live webcam detection in the browser</b> with ONNX Runtime Web: real-time, zero server CPU, and no video leaves the device.</li>
+          <li>Deployment trade-offs measured: 640 px for image accuracy, 320 px for real-time video, plus per-session isolation, upload limits and rate limiting.</li>
+        </ul>
+        <div class="chips"><i>YOLO</i><i>PyTorch</i><i>ONNX Runtime</i><i>OpenCV</i><i>FastAPI</i><i>ffmpeg</i><i>WebGPU</i><i>Docker</i></div>
+        <div class="project-links">
+          <a class="btn primary" href="https://visiontrack-45cp.onrender.com" target="_blank" rel="noopener">Live demo</a>
+          <a class="btn" href="https://github.com/muhammedroshanmk048/realtime-object-detection" target="_blank" rel="noopener">Code</a>
+        </div>
+        <p class="muted small-note">Free hosting sleeps when idle, so the first load can take about a minute.</p>
+      </article>
+
+      <article class="project feature reveal">
+        <div class="project-head">
+          <span class="tag new">Live demo</span>
           <h3>MeetScribe</h3>
           <p class="muted">AI meeting transcription assistant</p>
         </div>
